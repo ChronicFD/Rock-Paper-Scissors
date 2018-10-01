@@ -4,9 +4,68 @@
   <title>Page Title</title>
 </head>
 <body>
-  <script>
- 	// Your JavaScript goes here!
-    
+
+<script>
+     // Your JavaScript goes here!
+    function computerPlay(playerSelection, computerSelection) {
+        
+        playerSelection = playerSelection.toLowerCase();  // Convert input to lowercase
+        
+        computerSelection = Math.floor(Math.random() * 3) + 1; // Generates a random # between 1 and 3
+        
+        // Test for valid inputs
+        if (testIfValid(playerSelection) == false) {
+            let message = "No result";
+            return message;
+        }
+
+        // assigns a RPS value to the random #
+        else if (computerSelection == 1) computerSelection = "rock"; 
+        else if (computerSelection == 2) computerSelection = "paper";
+        else computerSelection = "scissors";
+        
+        //Test for tie condition
+        let winlose = "wins over";
+        if (testIfTied(playerSelection, computerSelection) == true) winlose = "ties with"; 
+        
+        // finds result of R-P-S
+        else switch (playerSelection) {
+            case "rock":
+                if (computerSelection == "paper") winlose = "loses to";
+                else winlose = "wins over";
+            case "paper":
+                if (computerSelection == "scissors") winlose = "loses to";
+                else winlose = "wins over";
+            default:  // "scissors" case...
+                if (computerSelection == "rock") winlose = "loses to";
+                else winlose = "wins over";
+        };
+        
+            // put result in text output
+            let result = playerSelection + " " + winlose + " " + computerSelection;
+            
+            return result;
+    };
+
+    function testIfValid(inputstring) {
+        if (inputstring !== "rock" && inputstring !== "paper" && inputstring !== "scissors") {
+            alert ("Not a valid input!");  // test for valid inputs
+            let x = false;
+            return x;
+        }
+        else x = true;
+        return x;
+    }
+
+    function testIfTied(playerinput, computerinput) {
+        if (playerinput == computerinput) {
+            alert ("You tied! Choose again!"); // Tie condition
+            let x = true;
+            return x;
+        }
+        else x = false;
+        return x;
+    }
   </script>
 </body>
 </html>
