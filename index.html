@@ -6,13 +6,30 @@
 <body>
 
 <script>
-     // Your JavaScript goes here!
+    // Your JavaScript goes here!
+
+    // run the program
+    function game() {
+
+        // play 5 iterations of rock-paper-scissors
+        for (i=0; i<5; i++) {
+            // get user input from prompt
+            let gameuserinput = window.prompt("Choose rock, paper, or scissors", "Type here");
+            // let j = "rock"  // debug variables
+
+            let output = computerPlay(gameuserinput);
+            console.log(i);
+            console.log(output);
+        };
+    };
+
+    // Play Rock-Paper-Scissors
     function computerPlay(playerSelection, computerSelection) {
         
         playerSelection = playerSelection.toLowerCase();  // Convert input to lowercase
         
-        computerSelection = Math.floor(Math.random() * 3) + 1; // Generates a random # between 1 and 3
-        
+        //computerSelection = Math.floor(Math.random() * 3) + 1; // Generates a random # between 1 and 3
+
         // Test for valid inputs
         if (testIfValid(playerSelection) == false) {
             let message = "No result";
@@ -23,9 +40,12 @@
         else if (computerSelection == 1) computerSelection = "rock"; 
         else if (computerSelection == 2) computerSelection = "paper";
         else computerSelection = "scissors";
+        computerSelection = "paper";
+        console.log(computerSelection);
+
         
         //Test for tie condition
-        let winlose = "wins over";
+        let winlose = "default input";
         if (testIfTied(playerSelection, computerSelection) == true) winlose = "ties with"; 
         
         // finds result of R-P-S
@@ -33,39 +53,47 @@
             case "rock":
                 if (computerSelection == "paper") winlose = "loses to";
                 else winlose = "wins over";
+                console.log(winlose);
+                break;
             case "paper":
                 if (computerSelection == "scissors") winlose = "loses to";
                 else winlose = "wins over";
+                console.log(winlose);
+                break;
             default:  // "scissors" case...
                 if (computerSelection == "rock") winlose = "loses to";
                 else winlose = "wins over";
         };
         
-            // put result in text output
-            let result = playerSelection + " " + winlose + " " + computerSelection;
-            
-            return result;
+        
+        // put result in text output
+        let result = playerSelection + " " + winlose + " " + computerSelection;
+        
+        return result;
     };
 
+    // test for valid inputs
     function testIfValid(inputstring) {
         if (inputstring !== "rock" && inputstring !== "paper" && inputstring !== "scissors") {
-            alert ("Not a valid input!");  // test for valid inputs
+            alert ("Not a valid input!");  
             let x = false;
             return x;
         }
         else x = true;
         return x;
-    }
+    };
 
+    // Test for tie condition
     function testIfTied(playerinput, computerinput) {
         if (playerinput == computerinput) {
-            alert ("You tied! Choose again!"); // Tie condition
+            alert ("You tied! Choose again!"); 
             let x = true;
             return x;
         }
         else x = false;
         return x;
-    }
+    };
+
   </script>
 </body>
 </html>
